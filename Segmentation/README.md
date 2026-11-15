@@ -6,6 +6,14 @@ This directory contains the code for the pulmonary nodule segmentation experimen
 
 The experiments use a Swin-UNet architecture with deep supervision and compare five model configurations under a consistent data split and evaluation protocol.
 
+## Ablation Studies
+
+### 1. Main Ablation Study
+Evaluates the effects of input representation and attention configurations on segmentation performance.
+
+### 2. Loss Function Ablation Study
+Investigates the effects of different loss functions and loss combinations on segmentation performance.
+
 ## Notebook
 
 ### `Ablation_study.ipynb`
