@@ -1,4 +1,4 @@
-# 2.5D Pulmonary Nodule Analysis
+# Full-Size CT Pulmonary Nodule Detection Using 2.5D Swin-UNet and Adaptive Decoder Attention
 
 This repository contains the implementation and experimental analyses of a deep learning framework for pulmonary nodule segmentation and slice-level nodule-presence classification in CT images from the LIDC-IDRI dataset.
 
