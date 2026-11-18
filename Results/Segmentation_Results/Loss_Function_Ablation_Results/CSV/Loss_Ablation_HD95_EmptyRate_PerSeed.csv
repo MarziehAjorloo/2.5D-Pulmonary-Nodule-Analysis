@@ -1,0 +1,16 @@
+Experiment,Seed,HD95 (px),Empty prediction rate (%)
+Simple_DiceBCE,41,23.6257,14.31
+Simple_DiceBCE,42,19.2792,16.47
+Simple_DiceBCE,43,27.8878,13.35
+Simple_DiceBCE,44,21.4683,16.38
+Simple_DiceBCE,45,22.9604,15.71
+Hybrid,41,21.296,14.17
+Hybrid,42,18.6707,18.16
+Hybrid,43,22.9951,16.67
+Hybrid,44,15.4034,14.31
+Hybrid,45,24.5268,10.95
+Hybrid_Aux_Att,41,20.5348,9.31
+Hybrid_Aux_Att,42,24.617,10.99
+Hybrid_Aux_Att,43,18.9788,11.38
+Hybrid_Aux_Att,44,14.1882,9.99
+Hybrid_Aux_Att,45,18.3626,11.19
