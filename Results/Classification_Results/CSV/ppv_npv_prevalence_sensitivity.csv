@@ -1,0 +1,5 @@
+Scenario,Prevalence,PPV,NPV
+Current test prevalence (45.4%),45.4%,0.8284,0.8521
+Hypothetical prevalence (5%),5.0%,0.2343,0.9891
+Hypothetical prevalence (10%),10.0%,0.3925,0.9773
+Hypothetical prevalence (20%),20.0%,0.5924,0.9503

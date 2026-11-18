@@ -1,0 +1,25 @@
+﻿Section,Check,Status,Details
+Seg-Internal,Train ∩ Validation = 0,PASS,0 overlapping patients
+Seg-Internal,Train ∩ Test = 0,PASS,0 overlapping patients
+Seg-Internal,Validation ∩ Test = 0,PASS,0 overlapping patients
+Pos/Neg,No patient overlap between Positive and Negative cohorts,PASS,0 overlapping patients: []
+Pos/Neg,No Negative-cohort patients in the Segmentation cohort,PASS,0 overlapping patients: []
+Cls-Internal-Positive,Train ∩ Validation = 0,PASS,0 overlapping patients
+Cls-Internal-Positive,Train ∩ Test = 0,PASS,0 overlapping patients
+Cls-Internal-Positive,Validation ∩ Test = 0,PASS,0 overlapping patients
+Cls-Internal-Negative,Train ∩ Validation = 0,PASS,0 overlapping patients
+Cls-Internal-Negative,Train ∩ Test = 0,PASS,0 overlapping patients
+Cls-Internal-Negative,Validation ∩ Test = 0,PASS,0 overlapping patients
+Cls-Internal-Combined,Train ∩ Validation = 0,PASS,0 overlapping patients
+Cls-Internal-Combined,Train ∩ Test = 0,PASS,0 overlapping patients
+Cls-Internal-Combined,Validation ∩ Test = 0,PASS,0 overlapping patients
+Patient-Purity-Positive,Each patient belongs to only one split,PASS,0 patients assigned to multiple splits: []
+Patient-Purity-Negative,Each patient belongs to only one split,PASS,0 patients assigned to multiple splits: []
+Cross-Exposure,Segmentation Train → Classification Validation,PASS,0 overlapping patients: []
+Cross-Exposure,Segmentation Train → Classification Test,PASS,0 overlapping patients: []
+Cross-Exposure,Segmentation Validation → Classification Train,PASS,0 overlapping patients: []
+Cross-Exposure,Segmentation Validation → Classification Test,PASS,0 overlapping patients: []
+Cross-Exposure,Segmentation Test → Classification Train,PASS,0 overlapping patients: []
+Cross-Exposure,Segmentation Test → Classification Validation,PASS,0 overlapping patients: []
+Duplicates,"No duplicate (patient_id, image_name) records",PASS,0 duplicate rows
+Reconciliation,Total rows across splits equal the dataset size,PASS,"Split total = 84,727 | Dataset total = 84,727"
