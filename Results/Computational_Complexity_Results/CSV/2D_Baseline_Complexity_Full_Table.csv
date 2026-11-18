@@ -1,0 +1,2 @@
+Model,Input,Parameters (M),Trainable Parameters (M),Model Size (MB),MACs (G),FLOPs (G),Training Memory (MB),Inference Memory (MB),Latency Mean (ms),Latency SD (ms),Throughput (images/s)
+2D_Baseline,2D (1-channel),34.292541,34.292541,132.9783477783203,15.800218416,31.600436832,4400.7392578125,1129.6953125,16.501256669289432,1.8719215953636976,166.80179929148093

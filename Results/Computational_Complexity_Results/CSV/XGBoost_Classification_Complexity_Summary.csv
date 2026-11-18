@@ -1,0 +1,10 @@
+Metric,Mean ± SD
+Features,776.0000 ± 0.0000
+Trees,186.0800 ± 30.2296
+Max Depth,4.0000 ± 0.0000
+Leaf Nodes,2887.8000 ± 454.1401
+Model Size (MB),0.3306 ± 0.0480
+Latency Mean (ms),0.6798 ± 0.0835
+Latency SD (ms),0.0898 ± 0.0470
+Throughput (samples/s),148751.8740 ± 10997.3194
+Peak Inference Memory (MB),0.0141 ± 0.0000

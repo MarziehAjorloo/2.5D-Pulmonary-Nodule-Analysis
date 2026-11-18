@@ -1,0 +1,2 @@
+Model,Input,Parameters (M),Trainable Parameters (M),Model Size (MB),MACs (G),FLOPs (G),Training Memory (MB),Inference Memory (MB),Latency Mean (ms),Latency SD (ms),Throughput (images/s)
+2.5D_DecAtt,2.5D (3-channel),34.443834,34.443834,133.55548477172852,15.93239448,31.86478896,5053.63525390625,1754.099609375,18.185586670491222,1.3349714974712046,157.52806436365958

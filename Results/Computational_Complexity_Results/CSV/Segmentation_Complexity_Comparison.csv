@@ -1,0 +1,6 @@
+﻿Model,Parameters (M),Model Size (MB),MACs (G),Training Memory (MB),Inference Memory (MB),Latency (ms)
+2D_Baseline,34.293,132.98,15.80,4401,1130,16.50 ± 1.87
+2.5D_Baseline,34.296,132.99,15.82,4424,1155,15.21 ± 0.62
+2.5D_EncAtt,34.854,135.12,15.89,4540,1289,20.10 ± 4.07
+2.5D_DecAtt,34.444,133.56,15.93,5054,1754,18.19 ± 1.33
+2.5D_FullAtt,35.002,135.68,16.01,5169,1889,19.40 ± 2.04
