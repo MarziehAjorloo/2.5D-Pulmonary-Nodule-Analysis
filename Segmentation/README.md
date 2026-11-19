@@ -130,7 +130,6 @@ The analysis includes:
 - HD95 evaluation.
 - Empty prediction analysis.
 - Comparison of model configurations.
-- Statistical analysis across experimental runs.
 - Confidence interval calculations.
 - Generation of tables and figures for reporting experimental results.
 
