@@ -2,11 +2,9 @@
 
 ## Overview
 
-This directory contains the implementation and experimental analyses for pulmonary nodule segmentation using the LIDC-IDRI dataset.
+This directory contains the implementation and experimental studies for pulmonary nodule segmentation using the LIDC-IDRI dataset.
 
-The main objective is to investigate the effects of 2.5D input representations, adaptive attention mechanisms, and different loss-function configurations on segmentation performance.
-
-The segmentation framework is based on a Swin-UNet architecture with deep supervision. The experiments compare different model configurations under consistent patient-level data partitions.
+The segmentation framework is based on a 2.5D Swin-UNet architecture with adaptive attention mechanisms and deep supervision. The experiments investigate the effects of input representation, attention configurations, and loss functions on segmentation performance.
 
 ## Segmentation Architecture
 
@@ -22,20 +20,20 @@ Main characteristics:
 - Decoder attention.
 - Deep supervision through intermediate decoder outputs.
 
-The central axial slice is used as the segmentation target, while neighboring slices provide additional contextual information in the 2.5D configuration.
+For 2.5D configurations, the central axial slice is used as the segmentation target, while the neighboring slices provide additional contextual information.
 
 ## Dataset Preparation
 
 The positive segmentation dataset is generated using the preprocessing code provided in the root-level `Preprocessing/` directory.
 
-The segmentation experiments use the positive dataset containing annotated pulmonary nodules.
-
-The dataset is loaded and filtered during the Main Ablation Study. The following criteria are applied during that stage:
+The dataset is loaded and filtered during the Main Ablation Study. The following criteria are applied:
 
 - Samples with a malignancy score of 3 are excluded.
-- A minimum polygon-area threshold of 100 pixels is applied.
+- Samples with a polygon area smaller than 100 pixels are excluded.
 
 These filters are applied after the initial dataset preprocessing.
+
+The 2.5D input stacks are also constructed during data loading in the Main Ablation Study. The preprocessing notebook generates individual 2D images and masks.
 
 ## Main Ablation Study
 
@@ -65,7 +63,7 @@ Each of the five model configurations is evaluated using five random seeds:
 - 44
 - 45
 
-The notebook is run separately for each seed. Each run evaluates all five model configurations.
+The notebook is executed separately for each seed. Each run evaluates all five model configurations.
 
 The same patient-level data partitions are maintained across the different seeds and model configurations to support consistent comparisons.
 
@@ -81,23 +79,14 @@ Patient identifiers are used to prevent slices from the same patient from appear
 
 The data split is kept fixed across the experiments.
 
-### Notebook
+### Notebook Execution
 
-The Main Ablation Study notebook contains the configuration, dataset preparation, model implementation, training, and evaluation procedures.
+The Main Ablation Study notebook contains seven cells:
 
-Its main sections include:
+- **Cells 1–6:** Configuration, dataset preparation, patient-level splitting, data loaders, loss functions, model architecture, and evaluation functions.
+- **Cell 7:** Training and evaluation of the five segmentation model configurations.
 
-1. Configuration and setup.
-2. Dataset preparation and patient-level splitting.
-3. Dataset loading, preprocessing, and DataLoaders.
-4. Loss functions.
-5. Model architecture.
-6. Training and evaluation metrics.
-7. Main ablation experiments.
-
-**Important:** Execute Cells 1–7 of the Main Ablation Study notebook in order before running the subsequent experimental and analysis sections across the project.
-
-These cells establish the shared configuration, dataset partitions, data loaders, loss functions, model architecture, and evaluation functions required by later experiments and analysis notebooks.
+Run Cells 1–7 sequentially. Repeat the execution of Cell 7 using seeds 41, 42, 43, 44, and 45. Each run evaluates all five model configurations.
 
 The main experiments use full-size images without cropping. Patch-based cropping is reserved for the Patch-Based Ablation Study.
 
@@ -118,7 +107,7 @@ The loss components used in the project include:
 
 The auxiliary decoder outputs use weighted binary cross-entropy losses for deep supervision.
 
-The purpose of these experiments is to examine how different loss configurations affect segmentation quality and boundary-related performance.
+The experiments examine how different loss configurations affect segmentation quality and boundary-related performance.
 
 ## Patch-Based Ablation Study
 
@@ -128,13 +117,11 @@ Different patch configurations are evaluated to examine the effect of localized 
 
 This study is separate from the main full-size segmentation experiments.
 
-## Segmentation Results Analysis
+## Segmentation Evaluation and Analysis
 
 ### Notebook: `Segmentation_Results_Analysis.ipynb`
 
-This notebook contains the result analysis and evaluation procedures for the segmentation experiments.
-
-It is used to analyze the outputs generated by the Main Ablation Study and other segmentation experiments.
+This notebook contains the code for evaluating and analyzing the outputs of the segmentation experiments. It generates the corresponding numerical results, statistical analyses, tables, and figures.
 
 The analysis includes:
 
@@ -147,8 +134,5 @@ The analysis includes:
 - Confidence interval calculations.
 - Generation of tables and figures for reporting experimental results.
 
-## References
+The generated CSV files and figures are stored in the corresponding `Results/CSV/` and `Results/Figures/` directories.
 
-- [LIDC-IDRI – The Cancer Imaging Archive (TCIA)](https://www.cancerimagingarchive.net/collection/lidc-idri/)
-- [PyTorch](https://pytorch.org/)
-- [timm – PyTorch Image Models](https://github.com/huggingface/pytorch-image-models)
