@@ -291,9 +291,9 @@ Install the required Python packages using:
 pip install -r requirements.txt
 ```
 
-PyTorch and CUDA should be installed with versions compatible with the available GPU and CUDA environment. Refer to the [official PyTorch installation guide](https://pytorch.org/get-started/locally/) for the appropriate installation command.
+PyTorch is not included in `requirements.txt` because its installation depends on the user's hardware and CUDA configuration. Install the appropriate CPU or CUDA version by following the [official PyTorch installation guide](https://pytorch.org/get-started/locally/).
 
-Before running the notebooks, configure the dataset, output, and checkpoint paths according to the local environment.
+Before running the notebooks, update the dataset, output, and checkpoint paths according to your local environment.
 
 ## Reproducibility
 
