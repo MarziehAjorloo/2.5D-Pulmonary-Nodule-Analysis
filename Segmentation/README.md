@@ -95,7 +95,7 @@ Its main sections include:
 6. Training and evaluation metrics.
 7. Main ablation experiments.
 
-**Important:** Execute Cells 1–6 of the Main Ablation Study notebook in order before running the subsequent experimental and analysis sections across the project.
+**Important:** Execute Cells 1–7 of the Main Ablation Study notebook in order before running the subsequent experimental and analysis sections across the project.
 
 These cells establish the shared configuration, dataset partitions, data loaders, loss functions, model architecture, and evaluation functions required by later experiments and analysis notebooks.
 
@@ -213,7 +213,7 @@ To reproduce the segmentation experiments:
 1. Obtain the LIDC-IDRI dataset from TCIA.
 2. Run the root-level preprocessing notebook to generate the positive segmentation dataset.
 3. Configure the dataset paths in the Main Ablation Study notebook.
-4. Execute Cells 1–6 of the Main Ablation Study notebook in order.
+4. Execute Cells 1–7 of the Main Ablation Study notebook in order.
 5. Run the five model configurations using seeds 41–45.
 6. Run the `Segmentation_Results_Analysis.ipynb` notebook to evaluate and analyze the generated results.
 7. Run the Loss Function and Patch-Based Ablation Studies when required.
