@@ -2,7 +2,7 @@
 
 This repository contains the implementation and experimental analyses of a deep learning framework for pulmonary nodule segmentation and slice-level nodule-presence classification using CT images from the LIDC-IDRI dataset.
 
-The framework combines a 2.5D Swin-UNet with adaptive attention mechanisms for pulmonary nodule segmentation and an XGBoost-based classifier for identifying CT slices containing pulmonary nodules. The repository also includes preprocessing procedures, ablation studies, quantitative evaluation, statistical analysis, model calibration, and explainable AI (XAI) analyses.
+The framework combines a 2.5D Swin-UNet with adaptive attention mechanisms for pulmonary nodule segmentation and an XGBoost-based classifier for identifying CT slices containing pulmonary nodules. The repository also includes preprocessing procedures, ablation studies, quantitative evaluation, statistical analysis, model calibration, computational complexity evaluation, and explainable AI (XAI) analyses.
 
 ## Project Overview
 
@@ -13,18 +13,17 @@ The framework consists of the following main stages:
 3. **Nodule-Presence Classification:** Deep features extracted from the segmentation model are combined with handcrafted features and used as input to an XGBoost classifier.
 4. **Model Evaluation and Analysis:** Quantitative evaluation, ablation experiments, statistical analyses, and qualitative examination of model predictions.
 5. **Explainable AI:** Attention analysis, Grad-CAM, occlusion sensitivity, and SHAP are used to investigate model behavior and feature contributions.
+6. **Computational Complexity Analysis:** Evaluation of model parameters, model size, computational operations, and inference memory requirements.
 
 ## Dataset
 
 The experiments use the **Lung Image Database Consortium and Image Database Resource Initiative (LIDC-IDRI)** dataset.
 
-The dataset contains thoracic CT scans collected from multiple institutions and annotated by experienced radiologists.
+The CT images and annotations were processed to generate resized images and corresponding masks. Patient-level data splitting was used in the experiments to prevent patient overlap between training, validation, and test sets.
 
 Dataset reference:
 
 - [LIDC-IDRI – The Cancer Imaging Archive (TCIA)](https://www.cancerimagingarchive.net/collection/lidc-idri/)
-
-The CT images and annotations were processed to generate resized images and corresponding masks. Patient-level data splitting was used in the experiments to prevent patient overlap between training, validation, and test sets.
 
 ## Methodology
 
@@ -110,6 +109,20 @@ Explainability analyses are performed for both segmentation and classification.
 - Occlusion sensitivity analysis.
 - Evaluation of feature importance and stability across model runs.
 
+### 7. Computational Complexity Analysis
+
+The computational complexity of the segmentation models and the overall framework is evaluated.
+
+The analysis includes:
+
+- Number of model parameters.
+- Model size.
+- Multiply-accumulate operations (MACs).
+- Inference memory requirements.
+- Computational complexity of the XGBoost classifier.
+
+The corresponding notebook is provided in the `Computational_Complexity/` directory.
+
 ## Repository Structure
 
 ```text
@@ -164,6 +177,8 @@ The directory tree provides an overview of the main project components. Addition
 | `Classification_Results.ipynb` | Classification evaluation and related analyses. |
 | `XAI_Analysis/` | Explainability analyses for segmentation and classification. |
 | `XAI_Analysis_and_Results.ipynb` | Attention analysis, Grad-CAM, occlusion sensitivity, and SHAP analyses. |
+| `Computational_Complexity/` | Computational complexity evaluation of the framework. |
+| `Computational_Complexity_Analysis.ipynb` | Analysis of model parameters, model size, MACs, and computational requirements. |
 | `Results/` | Organization of generated numerical results and figures within the corresponding project sections. |
 
 ## Execution Order
@@ -176,35 +191,57 @@ Run the two preprocessing cells in the root-level `Preprocessing/Preprocessing.i
 
 The LIDC-IDRI dataset must be available locally, and the dataset paths must be configured before execution.
 
+The positive dataset is required for segmentation, while both positive and negative datasets are used for classification.
+
 ### Step 2. Main Ablation Study Setup
 
-**Important:** Before running the subsequent experimental and analysis sections across the project, execute Cells 1–7 of the Main Ablation Study notebook in order.
+Open the Main Ablation Study notebook and configure the dataset, output, and checkpoint paths according to the local environment.
 
-These cells define the main configuration, dataset preparation and patient-level splits, data loaders, loss functions, model architecture, and evaluation functions.
+The notebook contains seven cells:
 
-The variables, functions, and dataset partitions established in these cells are required by subsequent experimental and analysis sections.
+- **Cells 1–6:** Configuration, dataset preparation, patient-level splitting, data loaders, loss functions, model architecture, and evaluation functions.
+- **Cell 7:** Training and evaluation of the five segmentation model configurations.
 
-### Step 3. Main Segmentation Experiments
+The required execution depends on whether trained checkpoints are already available.
 
-Run the Main Ablation Study using the five random seeds:
+**Case A: Running the experiments from scratch (without pretrained checkpoints)**
 
-- Seed 41
-- Seed 42
-- Seed 43
-- Seed 44
-- Seed 45
+1. Execute Cells 1–7 sequentially.
+2. Run the experiments using seeds 41, 42, 43, 44, and 45.
+3. Each seed run evaluates all five model configurations.
+4. Save the resulting model checkpoints and other required outputs for subsequent analyses.
 
-Each run evaluates all five model configurations. The data split remains fixed across runs.
+**Case B: Using existing trained checkpoints**
 
-### Step 4. Result Analysis
+1. Execute Cells 1–6 sequentially to initialize the configuration, dataset partitions, data loaders, model architecture, loss functions, and evaluation functions.
+2. Skip Cell 7 if no additional training is required.
+3. Configure the paths to the existing checkpoints before running subsequent analysis and dependent notebooks.
 
-Run `Segmentation_Results_Analysis.ipynb` to perform the segmentation result evaluation, quantitative analysis, statistical comparisons, and visualization.
+Cells 1–6 provide the shared definitions and preparation steps required by subsequent experimental and analysis sections. Cell 7 is only required when training and generating the segmentation checkpoints.
 
-The classification and XAI notebooks can then be executed using their corresponding data, checkpoints, and required outputs.
+### Step 3. Segmentation Result Analysis
 
-**Note:** Some analysis cells depend on variables, functions, or data partitions defined in the first six cells of the Main Ablation Study notebook. Run those cells before executing the dependent sections.
+Run `Segmentation_Results_Analysis.ipynb` to evaluate and analyze the generated segmentation results.
 
-### Results Organization
+This notebook performs quantitative evaluation, statistical analysis, model comparisons, and visualization.
+
+### Step 4. Classification
+
+Run `Classification_Results.ipynb` using the required classification datasets, trained segmentation checkpoints, and extracted features.
+
+### Step 5. Explainable AI Analysis
+
+Run `XAI_Analysis_and_Results.ipynb` using the corresponding trained models, datasets, and required intermediate outputs.
+
+### Step 6. Computational Complexity Analysis
+
+Run `Computational_Complexity_Analysis.ipynb` to evaluate the computational requirements of the segmentation models and classification framework.
+
+### Additional Ablation Studies
+
+The Loss Function Ablation Study and Patch-Based Ablation Study can be executed separately when their corresponding experiments are required.
+
+## Results Organization
 
 Experimental and analysis outputs are organized into the corresponding `Results` directories:
 
@@ -214,7 +251,7 @@ Experimental and analysis outputs are organized into the corresponding `Results`
 - **Classification:** Classification metrics and evaluation results.
 - **XAI Analysis:** Attention analysis, SHAP results, and occlusion visualizations.
 
-The notebooks save their outputs in these directories to keep experimental results separate from implementation code.
+The notebooks save their generated outputs in the corresponding result directories to keep experimental results separate from implementation code.
 
 ## Files Not Included in the Repository
 
@@ -264,9 +301,9 @@ To reproduce the experiments:
 
 1. Obtain the LIDC-IDRI dataset from TCIA.
 2. Run the preprocessing notebook to generate the required positive and negative datasets.
-3. Configure the dataset and checkpoint paths.
-4. Execute Cells 1–7 of the Main Ablation Study notebook.
-5. Run the main segmentation experiments using seeds 41–45.
-6. Run the corresponding result analysis, classification, and XAI notebooks.
+3. Configure the dataset, output, and checkpoint paths.
+4. If trained checkpoints are unavailable, execute Cells 1–7 of the Main Ablation Study notebook and run the five seeds (41–45) to generate the segmentation checkpoints.
+5. If trained checkpoints are available, execute Cells 1–6 and configure the existing checkpoint paths.
+6. Run the corresponding segmentation analysis, classification, XAI, and computational complexity notebooks as required.
 
-Some experiments require trained checkpoints and extracted feature files. These files are not included in the repository and must be generated using the corresponding experimental procedures or provided separately.
+Some analysis procedures require trained checkpoints and extracted feature files. These files are not included in the repository and must be generated using the corresponding experimental procedures or provided separately.
