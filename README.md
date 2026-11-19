@@ -175,7 +175,7 @@ The LIDC-IDRI dataset must be available locally, and the dataset paths must be c
 
 ### Step 2. Main Ablation Study Setup
 
-**Important:** Before running the subsequent experimental and analysis sections across the project, execute Cells 1–6 of the Main Ablation Study notebook in order.
+**Important:** Before running the subsequent experimental and analysis sections across the project, execute Cells 1–7 of the Main Ablation Study notebook in order.
 
 These cells define the main configuration, dataset preparation and patient-level splits, data loaders, loss functions, model architecture, and evaluation functions.
 
@@ -262,12 +262,8 @@ To reproduce the experiments:
 1. Obtain the LIDC-IDRI dataset from TCIA.
 2. Run the preprocessing notebook to generate the required positive and negative datasets.
 3. Configure the dataset and checkpoint paths.
-4. Execute Cells 1–6 of the Main Ablation Study notebook.
+4. Execute Cells 1–7 of the Main Ablation Study notebook.
 5. Run the main segmentation experiments using seeds 41–45.
 6. Run the corresponding result analysis, classification, and XAI notebooks.
 
 Some experiments require trained checkpoints and extracted feature files. These files are not included in the repository and must be generated using the corresponding experimental procedures or provided separately.
-
-## License
-
-Please refer to the repository license for terms of use.
